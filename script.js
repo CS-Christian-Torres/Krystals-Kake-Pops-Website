@@ -9,7 +9,7 @@ const prices = {
 // Grab elements
 const chocolateInput = document.getElementById('chocolateQty');
 const vanillaInput = document.getElementById('vanillaQty');
-const strawberryInput = document.getElementById('strawberryQty');
+// const strawberryInput = document.getElementById('strawberryQty'); // Currently not used
 const totalPopsEl = document.getElementById('totalPops');
 const totalPriceEl = document.getElementById('totalPrice');
 const orderBtn = document.getElementById('orderBtn');
@@ -18,9 +18,9 @@ const orderBtn = document.getElementById('orderBtn');
 function calculateTotal() {
   const chocolate = parseInt(chocolateInput.value) || 0;
   const vanilla = parseInt(vanillaInput.value) || 0;
-  const strawberry = parseInt(strawberryInput.value) || 0;
+  // const strawberry = parseInt(strawberryInput.value) || 0;
 
-  const totalPops = chocolate + vanilla + strawberry;
+  const totalPops = chocolate + vanilla; // Strawberry removed
   let totalPrice = 0;
 
   if (totalPops === 1) totalPrice = prices.single;
@@ -46,7 +46,7 @@ function calculateTotal() {
 }
 
 // Event listeners
-[chocolateInput, vanillaInput, strawberryInput].forEach(input => {
+[chocolateInput, vanillaInput].forEach(input => {
   input.addEventListener('input', calculateTotal);
 });
 
@@ -57,8 +57,7 @@ calculateTotal();
 orderBtn.addEventListener('click', () => {
   const chocolate = parseInt(chocolateInput.value) || 0;
   const vanilla = parseInt(vanillaInput.value) || 0;
-  const strawberry = parseInt(strawberryInput.value) || 0;
-  const totalPops = chocolate + vanilla + strawberry;
+  const totalPops = chocolate + vanilla;
   const totalPrice = totalPriceEl.textContent;
 
   if (totalPops === 0) {

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krystal's Kake Pops Signup</title>
+  <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+  <section class="signup-section">
+    <div class="container">
+      <h1>Get a Free Cake Pop!</h1>
+      <p>Sign up with your email and choose your favorites. Receive a free cake pop with your first order!</p>
+      
+      <form id="signupForm">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="favoriteFlavor">Favorite Flavor:</label>
+          <select id="favoriteFlavor" name="favoriteFlavor" required>
+            <option value="">--Please choose--</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="vanilla">Vanilla</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="seasonalPreference">Seasonal Preference:</label>
+          <select id="seasonalPreference" name="seasonalPreference" required>
+            <option value="">--Please choose--</option>
+            <option value="strawberry">Spring - Strawberry</option>
+            <option value="birthday">Summer - Birthday Cake</option>
+            <option value="pumpkin">Fall - Pumpkin Spice 🎃</option>
+            <option value="redvelvet">Winter/December - Red Velvet</option>
+            <option value="other">Other (please specify)</option>
+          </select>
+        </div>
+        
+        <div class="form-group" id="otherSeasonalContainer" style="display:none;">
+          <label for="otherSeasonal">Other Seasonal Preference:</label>
+          <input type="text" id="otherSeasonal" name="otherSeasonal">
+        </div>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+        <p class="success-message" id="successMessage"></p>
+      </form>
+    </div>
+  </section>
+
+  <script src="signup.js"></script>
+</body>
+</html>

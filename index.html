@@ -23,76 +23,66 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-light bg-light shadow-sm mb-4">
-  <div class="container d-flex justify-content-between align-items-center">
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="gallery/logo.png" width="50" height="50" class="d-inline-block align-top me-2" alt="Krystal's kake pops logo">
-      Krystal's Kake Pops
-    </a>
-    <!-- Optional nav links for future use -->
-    <!--
-    <ul class="navbar-nav d-flex flex-row">
-      <li class="nav-item me-3"><a class="nav-link active" href="#">Home</a></li>
-      <li class="nav-item me-3"><a class="nav-link" href="#carouselSection">Gallery</a></li>
-      <li class="nav-item me-3"><a class="nav-link" href="#orderSection">Order</a></li>
-      <li class="nav-item"><a class="nav-link" href="#footerSection">Contact</a></li>
-    </ul>
-    -->
-  </div>
-</nav>
+<div class="container"> <!-- Page container starts -->
 
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-light shadow-sm mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="gallery/logo.png" width="50" height="50" class="d-inline-block align-top me-2" alt="Krystal's kake pops logo">
+        Krystal's Kake Pops
+      </a>
+    </div>
+  </nav>
 
-<!-- Hero Section -->
-<section class="hero-section d-flex flex-column align-items-center justify-content-center text-center">
-  <h1 class="display-4 fw-bold">Delicious Cake Pops</h1>
-  <p class="lead mb-4">Sweet. Homemade. Unforgettable.</p>
-  <a class="btn btn-primary btn-lg btn-order" href="#orderSection">Order Now</a>
-</section>
-
+  <!-- Hero Section -->
+  <section class="hero-section d-flex flex-column align-items-center justify-content-center text-center mb-5">
+    <h1 class="display-4 fw-bold">Delicious Cake Pops</h1>
+    <p class="lead mb-4">Sweet. Homemade. Unforgettable.</p>
+    <a class="btn btn-order btn-lg" href="#orderSection">Order Now</a>
+  </section>
 
   <!-- Carousel Section -->
-  <section id="carouselSection" class="my-5 px-3">
-    <div class="container">
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner text-center">
-          <div class="carousel-item active">
-            <img src="gallery/pop1.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
-          </div>
-          <div class="carousel-item">
-            <img src="gallery/pop2.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
-          </div>
-          <div class="carousel-item">
-            <img src="gallery/pop3.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
-          </div>
+  <section id="carouselSection" class="mb-5">
+    <div class="carousel slide" id="carouselExampleControls" data-bs-ride="carousel">
+      <div class="carousel-inner text-center">
+        <div class="carousel-item active">
+          <img src="gallery/pop1.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <div class="carousel-item">
+          <img src="gallery/pop2.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
+        <div class="carousel-item">
+          <img src="gallery/pop3.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </section>
 
   <!-- Seasonal Flavors Announcement -->
-  <section class="container my-4 text-center">
-    <h3 class="fw-bold" style="color: #e85d75;">✨ Seasonal Flavors Coming Soon! ✨</h3>
-    <p class="lead" style="color: #6b4f4f;">
+  <section class="text-center mb-4">
+    <h3 class="fw-bold">✨ Seasonal Flavors Coming Soon! ✨</h3>
+    <p class="lead text-muted">
       Delicious limited-time cake pops are on their way – get ready for sweet surprises and irresistible seasonal treats!
     </p>
   </section>
 
+  <!-- Available Cake Pops -->
   <div class="text-center mb-4">
-    <h2 class="text-brand" class="fw-bold">Available Cake Pops</h2>
-    <p class="text-muted">Mix & match your favorites – chocolate, vanilla, and strawberry!</p>
+    <h2 class="text-brand fw-bold">Available Cake Pops</h2>
+    <p class="text-muted">Mix & match your favorites – chocolate and vanilla!</p>
   </div>
 
   <!-- Cake Pops Cards Section -->
-  <section class="container mb-5">
+  <section class="mb-5">
     <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
       <div class="col">
         <div class="card h-100 text-center shadow-sm hover-scale">
@@ -112,6 +102,7 @@
           </div>
         </div>
       </div>
+      <!-- Strawberry currently commented out
       <div class="col">
         <div class="card h-100 text-center shadow-sm hover-scale">
           <img src="gallery/pop6.jpg" class="card-img-top img-fluid" style="height: 150px; object-fit: cover;" alt="Fresh strawberry cake pop flavor with a sweet glaze">
@@ -121,46 +112,39 @@
           </div>
         </div>
       </div>
+      -->
     </div>
   </section>
 
-
   <!-- Testimonials Section -->
-<section class="container my-5 text-center">
-  <h3 class="mb-4 fw-bold text-brand">What Our Customers Say</h3>
-  
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card h-100 border-0 bg-light shadow-sm p-3">
-        <p class="fst-italic mb-1">"Absolutely the best cake pops I've ever had! So delicious and cute!"</p>
-        <small class="fw-bold text-muted">– Sarah L.</small>
+  <section class="text-center mb-5">
+    <h3 class="fw-bold text-brand mb-4">What Our Customers Say</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card h-100 border-0 bg-light shadow-sm p-3">
+          <p class="fst-italic mb-1">"Absolutely the best cake pops I've ever had! So delicious and cute!"</p>
+          <small class="fw-bold text-muted">– Sarah L.</small>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 bg-light shadow-sm p-3">
+          <p class="fst-italic mb-1">"Perfect for our party! Everyone loved the chocolate and vanilla ones."</p>
+          <small class="fw-bold text-muted">– Michael P.</small>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 border-0 bg-light shadow-sm p-3">
+          <p class="fst-italic mb-1">"Fresh, sweet, and beautiful presentation. Highly recommend!"</p>
+          <small class="fw-bold text-muted">– Emily R.</small>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100 border-0 bg-light shadow-sm p-3">
-        <p class="fst-italic mb-1">"Perfect for our party! Everyone loved the chocolate and vanilla ones."</p>
-        <small class="fw-bold text-muted">– Michael P.</small>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-0 bg-light shadow-sm p-3">
-        <p class="fst-italic mb-1">"Fresh, sweet, and beautiful presentation. Highly recommend!"</p>
-        <small class="fw-bold text-muted">– Emily R.</small>
-      </div>
-    </div>
-  </div>
-</section>
-
- <!-- Call-to-action line -->
-  <p class="text-center mt-3 fst-italic container">
-    Loved your cake pops? ⭐ Leave us a Google review and help spread the sweetness!
-  </p>
-</section>
+  </section>
 
   <!-- Order Section -->
-  <section id="orderSection" class="container mb-5 text-center">
-    <h2 class="mb-4">Order Your Cake Pops</h2>
-    
+  <section id="orderSection" class="text-center mb-5">
+    <h2 class="fw-bold mb-4">Order Your Cake Pops</h2>
+
     <div class="row justify-content-center g-3 mb-3">
       <div class="col-6 col-md-3">
         <label for="chocolateQty" class="form-label">Chocolate</label>
@@ -170,10 +154,12 @@
         <label for="vanillaQty" class="form-label">Vanilla</label>
         <input type="number" min="0" value="0" class="form-control flavor-qty" id="vanillaQty">
       </div>
+      <!-- Strawberry currently commented out
       <div class="col-6 col-md-3">
         <label for="strawberryQty" class="form-label">Strawberry</label>
         <input type="number" min="0" value="0" class="form-control flavor-qty" id="strawberryQty">
       </div>
+      -->
     </div>
 
     <div class="order-summary mb-4">
@@ -181,46 +167,44 @@
       <h4>Total Price: $<span id="totalPrice">0.00</span></h4>
     </div>
 
-    <button id="orderBtn" class="btn btn-success btn-lg btn-order">Pay & Order</button>
+    <button id="orderBtn" class="btn btn-order btn-lg" disabled>Pay & Order</button>
   </section>
 
-    <p class="text-center text-brand fst-italic mb-4">
-    Sign up with your email and receive <strong>1 FREE cake pop</strong> with any purchase!
+  <!-- Newsletter Signup CTA -->
+  <section class="newsletter-cta py-5 text-center">
+    <p class="fst-italic mb-3">
+      Sign up with your email and receive <strong>1 FREE cake pop</strong> with any purchase!
     </p>
-  
+    <a href="signup.html" class="btn btn-cta btn-lg">Sign Up Now</a>
+  </section>
 
-  <!-- Newsletter / Mailchimp Signup -->
-  <form action="YOUR_MAILCHIMP_URL" method="post" target="_blank" class="d-flex justify-content-center mt-3 flex-wrap gap-2">
-    <input type="email" name="EMAIL" class="form-control" placeholder="Enter your email" required style="max-width: 250px;">
-    <button type="submit" class="btn btn-success">Subscribe</button>
-  </form>
+  <!-- Footer -->
+  <footer id="footerSection" class="py-4 text-center">
+    <p class="mb-1">&copy; 2025 Krystal's Kake Pops. All rights reserved.</p>
+    <p class="mb-1">
+      Email: <a href="mailto:krystalskakepops@gmail.com">krystalskakepops@gmail.com</a> | 
+      Phone: (123) 456-7890
+    </p>
+    <div class="d-flex justify-content-center gap-3 my-2">
+      <a href="https://www.facebook.com/share/1GB5uLkH5x/?mibextid=wwXIfr" target="_blank" class="btn btn-order btn-lg rounded-circle">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/krystalskakepops?igsh=OXdyNjFjc2xmMXh3&utm_source=qr
+" target="_blank" class="btn btn-order btn-lg rounded-circle">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://youtube.com/@kakepops?si=YRj3LKqX4yj4QPn2" target="_blank" class="btn btn-order btn-lg rounded-circle">
+        <i class="bi bi-youtube"></i>
+      </a>
+    </div>
+  </footer>
 
-  <footer id="footerSection" class="bg-light py-4 text-center">
-  <p class="mb-1">&copy; 2025 Krystal's Kake Pops. All rights reserved.</p>
-  <p class="mb-1">
-    Email: <a href="mailto:krystal@example.com">krystalskakepops@gmail.com</a> | 
-    Phone: (123) 456-7890 <br>
-  </p>
-  <div class="d-flex justify-content-center gap-3 my-2">
-    <a href="https://www.facebook.com/YourPage" target="https://www.facebook.com/share/1GB5uLkH5x/?mibextid=wwXIfr" class="btn btn-primary btn-lg rounded-circle">
-      <i class="bi bi-facebook"></i>
-    </a>
-    <a href="https://www.instagram.com/YourPage" target="_blank" class="btn btn-danger btn-lg rounded-circle">
-      <i class="bi bi-instagram"></i>
-    </a>
-    <a href="https://www.youtube.com/YourPage" target="https://youtube.com/@kakepops?si=ATh_8RRfEM9j907x" class="btn btn-info btn-lg rounded-circle">
-      <i class="bi bi-youtube"></i>
-    </a>
-  </div>
+</div> <!-- Page container ends -->
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
-</footer>
-
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
-  <!-- Custom JS -->
-  <script src="script.js"></script>
+<!-- Custom JS -->
+<script src="script.js"></script>
 </body>
 </html>
