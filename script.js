@@ -2,8 +2,8 @@
 const prices = {
   single: 3.50,
   three: 8.75,
-  halfDozen: 17,
-  dozen: 32
+  halfDozen: 16,
+  dozen: 27
 };
 
 // Grab elements

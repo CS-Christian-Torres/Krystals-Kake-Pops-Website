@@ -16,7 +16,7 @@ seasonalSelect.addEventListener('change', () => {
 const form = document.getElementById('signupForm');
 const successMessage = document.getElementById('successMessage');
 
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const formData = {
@@ -28,14 +28,30 @@ form.addEventListener('submit', function(e) {
   };
 
   // Validate required fields
-  if (!formData.name || !formData.email || !formData.favoriteFlavor || !formData.seasonalPreference || (formData.seasonalPreference === 'other' && !formData.otherSeasonal)) {
+  if (
+    !formData.name ||
+    !formData.email ||
+    !formData.favoriteFlavor ||
+    !formData.seasonalPreference ||
+    (formData.seasonalPreference === 'other' && !formData.otherSeasonal)
+  ) {
     alert('Please fill out all required fields.');
     return;
   }
 
-  // TODO: Save formData to server/CSV
+  // Convert to FormData for backend
+  const body = new FormData();
+  for (const key in formData) {
+    body.append(key, formData[key]);
+  }
 
-  successMessage.textContent = "Thank you! Your signup has been recorded.";
-  form.reset();
-  otherContainer.style.display = 'none';
-});
+  try {
+    const response = await fetch('http://192.168.1.30:8085/form-handler', {
+      method: 'POST',
+      body: body,
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      successMessage.textContent = '🎉 Thank you! Your signup has been recorded.';
+      successMessage.s
