@@ -21,25 +21,38 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body>    
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="gallery/logo.png" width="50" height="50" class="logo-circle me-2" alt="Krystal's Kake Pops logo">
+      <span class="fw-bold text-pink">Krystal's Kake Pops</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="menu/menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="order/order.html">Order</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <div class="container"> <!-- Page container starts -->
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-light bg-light shadow-sm mb-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="gallery/logo.png" width="50" height="50" class="d-inline-block align-top me-2" alt="Krystal's kake pops logo">
-        Krystal's Kake Pops
-      </a>
-    </div>
-  </nav>
-
   <!-- Hero Section -->
   <section class="hero-section d-flex flex-column align-items-center justify-content-center text-center mb-5">
-    <h1 class="display-4 fw-bold">Delicious Cake Pops</h1>
-    <p class="lead mb-4">Sweet. Homemade. Unforgettable.</p>
-    <a class="btn btn-order btn-lg" href="#orderSection">Order Now</a>
+      <h1 class="display-4 fw-bold">Delicious Cake Pops</h1>
+     <p class="lead mb-4">Sweet. Homemade. Unforgettable.</p>
+      <h3>ServSafe Certified 🍽️</h3> <br>
+      <a class="btn btn-order btn-lg" href="#orderSection">Order Now</a>
   </section>
 
   <!-- Carousel Section -->
@@ -47,14 +60,32 @@
     <div class="carousel slide" id="carouselExampleControls" data-bs-ride="carousel">
       <div class="carousel-inner text-center">
         <div class="carousel-item active">
-          <img src="gallery/pop1.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+          <img src="gallery/carousel2.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
         </div>
         <div class="carousel-item">
-          <img src="gallery/pop2.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+          <img src="gallery/carousel3.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
         </div>
         <div class="carousel-item">
-          <img src="gallery/pop3.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+          <img src="gallery/carousel4.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
         </div>
+        <div class="carousel-item">
+          <img src="gallery/carousel5.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
+        <div class="carousel-item">
+          <img src="gallery/carousel7.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
+        <div class="carousel-item">
+          <img src="gallery/carousel8.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
+        <div class="carousel-item">
+          <img src="gallery/carousel9.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
+        <div class="carousel-item">
+          <img src="gallery/carousel10.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div>
+        <div class="carousel-item">
+          <img src="gallery/carousel11.jpg" class="img-fluid rounded shadow" style="max-height: 50vh;" alt="Cake Pop with rainbow sprinkles">
+        </div> 
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,54 +98,71 @@
     </div>
   </section>
 
-  <!-- Seasonal Flavors Announcement -->
-  <section class="text-center mb-4">
-    <h3 class="fw-bold">✨ Seasonal Flavors Coming Soon! ✨</h3>
-    <p class="lead text-muted">
-      Delicious limited-time cake pops are on their way – get ready for sweet surprises and irresistible seasonal treats!
-    </p>
-  </section>
+<!-- Seasonal Flavors Announcement -->
+<section class="text-center mb-4">
+  <h3 class="fw-bold">✨ Seasonal Flavors Coming Soon! ✨</h3>
+  <p class="lead text-muted">
+    Delicious limited-time cake pops are on their way – get ready for sweet surprises and irresistible seasonal treats!
+  </p>
+</section>
 
-  <!-- Available Cake Pops -->
-  <div class="text-center mb-4">
-    <h2 class="text-brand fw-bold">Available Cake Pops</h2>
-    <p class="text-muted">Mix & match your favorites – chocolate and vanilla!</p>
+<!-- Featured Products Cards -->
+<section class="mb-5">
+  <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
+
+    <!-- Chocolate Cake Pop -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm hover-scale">
+        <img src="gallery/chocolate2.jpg" class="card-img-top img-fluid" style="height:150px;object-fit:cover;" alt="Chocolate cake pop with rainbow sprinkles">
+        <div class="card-body">
+          <p class="card-text fw-bold">Chocolate Cake Pop</p>
+          <p class="text-muted small">Rich chocolate with rainbow sprinkles</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vanilla Cake Pop -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm hover-scale">
+        <img src="gallery/vanilla1.jpeg" class="card-img-top img-fluid" style="height:150px;object-fit:cover;" alt="Vanilla covered cake pop with white chocolate and rainbow sprinkles">
+        <div class="card-body">
+          <p class="card-text fw-bold">Vanilla Cake Pop</p>
+          <p class="text-muted small">Vanilla covered with white chocolate and rainbow sprinkles</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Halloween Cake Pop -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm hover-scale">
+        <img src="gallery/halloween red.jpg" class="card-img-top img-fluid" style="height:150px;object-fit:cover;" alt="Spooky Halloween-themed cake pop">
+        <div class="card-body">
+          <p class="card-text fw-bold">Halloween Cake Pop</p>
+          <p class="text-muted small">Pumpkin spice and dark chocolate with spooky decorations</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crispy Rice Clouds -->
+    <div class="col">
+      <div class="card h-100 text-center shadow-sm hover-scale">
+        <img src="gallery/rice3.jpg" class="card-img-top img-fluid" style="height:150px;object-fit:cover;" alt="Crispy rice cloud treat with chocolate drizzle">
+        <div class="card-body">
+          <p class="card-text fw-bold">Crispy Rice Clouds</p>
+          <p class="text-muted small">Fluffy marshmallow rice treats dipped in chocolate</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Cake Pops Cards Section -->
-  <section class="mb-5">
-    <div class="row row-cols-2 row-cols-md-4 g-4 justify-content-center">
-      <div class="col">
-        <div class="card h-100 text-center shadow-sm hover-scale">
-          <img src="gallery/pop4.jpg" class="card-img-top img-fluid" style="height: 150px; object-fit: cover;" alt="Rich chocolate cake pop with rainbow sprinkles">
-          <div class="card-body">
-            <p class="card-text fw-bold">Chocolate Cake Pop</p>
-            <p class="text-muted small">Rich chocolate with rainbow sprinkles</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100 text-center shadow-sm hover-scale">
-          <img src="gallery/pop5.jpg" class="card-img-top img-fluid" style="height: 150px; object-fit: cover;" alt="Vanilla covered cake pop with white chocolate and rainbow sprinkles">
-          <div class="card-body">
-            <p class="card-text fw-bold">Vanilla Cake Pop</p>
-            <p class="text-muted small">Vanilla covered with white chocolate and rainbow sprinkles</p>
-          </div>
-        </div>
-      </div>
-      <!-- Strawberry currently commented out
-      <div class="col">
-        <div class="card h-100 text-center shadow-sm hover-scale">
-          <img src="gallery/pop6.jpg" class="card-img-top img-fluid" style="height: 150px; object-fit: cover;" alt="Fresh strawberry cake pop flavor with a sweet glaze">
-          <div class="card-body">
-            <p class="card-text fw-bold">Strawberry Cake Pop</p>
-            <p class="text-muted small">Fresh strawberry flavor with a sweet glaze</p>
-          </div>
-        </div>
-      </div>
-      -->
-    </div>
-  </section>
+  <!-- View Menu Button -->
+  <div class="text-center mt-5">
+    <a href="menu/menu.html" class="btn btn-pink px-4 py-2 rounded-pill shadow-sm">
+      View Full Menu →
+    </a>
+  </div>
+</section>
 
   <!-- Testimonials Section -->
   <section class="text-center mb-5">
@@ -141,34 +189,11 @@
     </div>
   </section>
 
-  <!-- Order Section -->
-  <section id="orderSection" class="text-center mb-5">
-    <h2 class="fw-bold mb-4">Order Your Cake Pops</h2>
-
-    <div class="row justify-content-center g-3 mb-3">
-      <div class="col-6 col-md-3">
-        <label for="chocolateQty" class="form-label">Chocolate</label>
-        <input type="number" min="0" value="0" class="form-control flavor-qty" id="chocolateQty">
-      </div>
-      <div class="col-6 col-md-3">
-        <label for="vanillaQty" class="form-label">Vanilla</label>
-        <input type="number" min="0" value="0" class="form-control flavor-qty" id="vanillaQty">
-      </div>
-      <!-- Strawberry currently commented out
-      <div class="col-6 col-md-3">
-        <label for="strawberryQty" class="form-label">Strawberry</label>
-        <input type="number" min="0" value="0" class="form-control flavor-qty" id="strawberryQty">
-      </div>
-      -->
-    </div>
-
-    <div class="order-summary mb-4">
-      <h4>Total Pops: <span id="totalPops">0</span></h4>
-      <h4>Total Price: $<span id="totalPrice">0.00</span></h4>
-    </div>
-
-    <button id="orderBtn" class="btn btn-order btn-lg" disabled>Pay & Order</button>
-  </section>
+ <div class="text-center mt-4">
+    <a href="order/order.html" class="btn btn-pink px-4 py-2 rounded-pill shadow-sm">
+    Place Your Order →
+    </a>
+  </div>
 
   <!-- Newsletter Signup CTA -->
   <section class="newsletter-cta py-5 text-center">
@@ -178,8 +203,10 @@
     <a href="signup.html" class="btn btn-cta btn-lg">Sign Up Now</a>
   </section>
 
+  </div> <!-- Page container ends -->
+
   <!-- Footer -->
-  <footer id="footerSection" class="py-4 text-center">
+  <footer id="contact" class="py-4 text-center">
     <p class="mb-1">&copy; 2025 Krystal's Kake Pops. All rights reserved.</p>
     <p class="mb-1">
       Email: <a href="mailto:krystalskakepops@gmail.com">krystalskakepops@gmail.com</a> | 
@@ -198,8 +225,6 @@
       </a>
     </div>
   </footer>
-
-</div> <!-- Page container ends -->
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

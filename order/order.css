@@ -1,0 +1,173 @@
+:root {
+  --main-red: #d32f2f;
+  --dark-red: #b71c1c;
+  --text-dark: #333;
+}
+
+/* =========================
+   Text & Buttons
+========================= */
+.text-pink,
+.text-brand {
+  color: var(--main-red);
+}
+
+.btn-pink {
+  background-color: var(--main-red);
+  color: white;
+  border: 2px solid var(--dark-red);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-pink:hover {
+  background-color: var(--dark-red);
+  transform: scale(1.05);
+}
+
+/* =========================
+   Table Styling
+========================= */
+table th {
+  color: var(--main-red);
+}
+
+table td select,
+table td input {
+  font-size: 0.9rem;
+}
+
+/* =========================
+   Navbar
+========================= */
+.navbar {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar-brand span {
+  color: var(--main-red);
+}
+
+.nav-link {
+  color: #555 !important;
+  font-weight: 500;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--main-red) !important;
+}
+
+/* =========================
+   Logo
+========================= */
+.logo-circle {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--main-red);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   Utilities
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========================
+   Order Page Enhancements
+========================= */
+
+/* Table styling — keep Bootstrap defaults, just color & subtle polish */
+.table th {
+  color: var(--main-red);
+  background-color: #fff9f9;
+  font-weight: 600;
+}
+
+.table-striped tbody tr:hover {
+  background-color: #fff5f5;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Quantity inputs — smaller and centered */
+.qty-input {
+  text-align: center;
+  max-width: 70px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.25rem;
+}
+
+/* Alerts — consistent with brand */
+.alert {
+  border-radius: 12px;
+  font-size: 0.95rem;
+  padding: 1rem;
+  line-height: 1.5;
+  background-color: #fff8f8;
+  border-left: 5px solid var(--main-red);
+}
+
+.alert strong {
+  color: var(--main-red);
+}
+
+.alert b {
+  color: var(--dark-red);
+}
+
+/* Totals section */
+#orderTotal {
+  color: var(--main-red);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.btn-pink {
+  background-color: var(--main-red);
+  color: white;
+  border: 2px solid var(--dark-red);
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-pink:hover {
+  background-color: var(--dark-red);
+  transform: scale(1.05);
+}
+
+/* =========================
+   Responsive Fixes
+========================= */
+@media (max-width: 576px) {
+  /* Reduce alert padding */
+  .alert {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  /* Make table text smaller */
+  .table {
+    font-size: 0.85rem;
+  }
+
+  /* Adjust inputs for mobile */
+  .qty-input {
+    max-width: 60px;
+    font-size: 0.85rem;
+  }
+
+  /* Make payment button full-width */
+  .btn-pink {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  /* Fix card padding */
+  .card {
+    padding: 1rem !important;
+  }
+}

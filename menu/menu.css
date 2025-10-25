@@ -1,0 +1,196 @@
+/* ===== MENU PAGE STYLES ===== */
+
+/* =========================
+   Color & Theme Variables
+========================= */
+:root {
+  --main-red: #d32f2f;
+  --dark-red: #b71c1c;
+  --bg-light: #fff8f0;
+  --text-dark: #333;
+  --text-muted: #6b4f4f;
+}
+
+/* =========================
+   General Layout
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* =========================
+   Headings & Text
+========================= */
+h1, h2, h3, h4 {
+  color: var(--main-red);
+}
+
+main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  color: var(--main-red);
+}
+
+section h3 {
+  margin: 0.5rem 0;
+  color: var(--main-red);
+}
+
+section p {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+section p:last-of-type {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: var(--main-red);
+}
+
+/* =========================
+   Product Grid & Cards
+========================= */
+section div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+section div > div {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  padding: 1.2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+section div > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   Buttons
+========================= */
+.btn-pink,
+.btn-order,
+a[href="index.html"] {
+  display: inline-block;
+  background-color: var(--main-red);
+  color: #fff !important;
+  border: 2px solid var(--dark-red);
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-pink:hover,
+.btn-order:hover,
+a[href="index.html"]:hover {
+  background-color: var(--dark-red);
+  transform: scale(1.05);
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  margin-top: 4rem;
+  padding: 1.5rem;
+  background-color: #ffe5d4;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+footer strong {
+  color: var(--main-red);
+}
+
+footer a {
+  color: var(--main-red);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer .btn-lg {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+footer .btn-lg:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+/* =========================
+   Navbar
+========================= */
+.navbar {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar-brand span {
+  color: var(--main-red);
+}
+
+.nav-link {
+  color: #555 !important;
+  font-weight: 500;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--main-red) !important;
+}
+
+/* Circle logo style */
+.logo-circle {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--main-red);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   Hover & Effects
+========================= */
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

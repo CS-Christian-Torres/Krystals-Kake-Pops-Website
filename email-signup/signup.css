@@ -1,3 +1,12 @@
+:root {
+    --main-red: #d32f2f;
+    --dark-red: #b71c1c;
+    --bg-light: #fff8f0;
+    --text-dark: #333;
+    --text-muted: #6b4f4f;
+}
+
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff8f0;

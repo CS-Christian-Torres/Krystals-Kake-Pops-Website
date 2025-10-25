@@ -3,13 +3,9 @@ const seasonalSelect = document.getElementById('seasonalPreference');
 const otherContainer = document.getElementById('otherSeasonalContainer');
 
 seasonalSelect.addEventListener('change', () => {
-  if (seasonalSelect.value === 'other') {
-    otherContainer.style.display = 'block';
-    document.getElementById('otherSeasonal').required = true;
-  } else {
-    otherContainer.style.display = 'none';
-    document.getElementById('otherSeasonal').required = false;
-  }
+  const isOther = seasonalSelect.value === 'other';
+  otherContainer.style.display = isOther ? 'block' : 'none';
+  document.getElementById('otherSeasonal').required = isOther;
 });
 
 // Form submission
@@ -35,7 +31,7 @@ form.addEventListener('submit', async function (e) {
     !formData.seasonalPreference ||
     (formData.seasonalPreference === 'other' && !formData.otherSeasonal)
   ) {
-    alert('Please fill out all required fields.');
+    alert('⚠️ Please fill out all required fields.');
     return;
   }
 
@@ -46,7 +42,7 @@ form.addEventListener('submit', async function (e) {
   }
 
   try {
-    const response = await fetch('http://192.168.1.30:8085/form-handler', {
+    const response = await fetch('https://api.krystalskakepops.com/form-handler', {
       method: 'POST',
       body: body,
     });
@@ -54,4 +50,14 @@ form.addEventListener('submit', async function (e) {
     if (response.ok) {
       const result = await response.json();
       successMessage.textContent = '🎉 Thank you! Your signup has been recorded.';
-      successMessage.s
+      successMessage.style.color = '#28a745';
+      form.reset();
+      otherContainer.style.display = 'none';
+    } else {
+      alert('❌ There was an error submitting your form. Please try again later.');
+    }
+  } catch (err) {
+    console.error('Error submitting form:', err);
+    alert('🚧 Unable to reach the server. Please try again later.');
+  }
+});

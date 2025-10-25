@@ -1,77 +1,74 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* =========================
    Variables
 ========================= */
 :root {
-    --main-red: #d32f2f;
-    --dark-red: #b71c1c;
-    --bg-light: #fff8f0;
-    --text-dark: #333;
-    --text-muted: #6b4f4f;
+  --main-red: #d32f2f;
+  --dark-red: #b71c1c;
+  --bg-light: #fff8f0;
+  --text-dark: #333;
+  --text-muted: #6b4f4f;
 }
 
 /* =========================
    Body & Typography
 ========================= */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
-    margin: 0;
-    padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
 }
 
 /* =========================
    Navbar
 ========================= */
 .navbar {
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 10px 20px;
-    background-color: var(--bg-light);
+  border-bottom: 1px solid #f2f2f2;
 }
 
-.navbar-brand {
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: var(--main-red);
-    text-decoration: none;
+.navbar-brand span {
+  color: var(--main-red);
 }
 
-.navbar-brand img {
-    border-radius: 50%;
+.nav-link {
+  color: #555 !important;
+  font-weight: 500;
 }
 
-.navbar-nav .nav-link {
-    color: var(--text-muted);
-    font-weight: 500;
-    margin-right: 15px;
-    transition: color 0.3s ease;
+.nav-link.active,
+.nav-link:hover {
+  color: var(--main-red) !important;
 }
 
-.navbar-nav .nav-link:hover {
-    color: var(--main-red);
-}
-
-.navbar .container {
-    max-width: 1140px;
-    margin: 0 auto;
+/* Circle logo style */
+.logo-circle {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--main-red);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================
    Hero Section
 ========================= */
 .hero-section {
-    background: linear-gradient(to right, #ffe5d4, #fff8f0);
-    padding: 100px 20px;
-    border-radius: 15px;
-    text-align: center;
+  background: linear-gradient(to right, #ffe5d4, #fff8f0);
+  padding: 100px 20px;
+  border-radius: 15px;
+  text-align: center;
 }
 
 .hero-section h1 {
-    color: var(--main-red);
+  color: var(--main-red);
 }
 
 .hero-section p {
-    color: var(--text-muted);
+  color: var(--text-muted);
 }
 
 /* =========================
@@ -81,155 +78,69 @@ body {
 .btn-primary,
 .btn-success,
 .btn-cta {
-    display: inline-block;
-    padding: 0.625rem 1.25rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: var(--main-red);
-    border: 2px solid var(--dark-red);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  padding: 0.625rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--main-red);
+  border: 2px solid var(--dark-red);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-order:hover,
 .btn-primary:hover,
 .btn-success:hover,
 .btn-cta:hover {
-    background-color: var(--dark-red);
-    transform: scale(1.05);
-    color: #fff;
+  background-color: var(--dark-red);
+  transform: scale(1.05);
+  color: #fff;
 }
 
 /* =========================
    Carousel
 ========================= */
 .carousel-inner img {
-    border-radius: 15px;
-    object-fit: cover;
+  border-radius: 15px;
+  object-fit: cover;
 }
 
 /* =========================
    Cake Pop Cards
 ========================= */
 .card {
-    border: none;
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.card-body p {
-    margin: 0;
-    font-weight: 600;
-    color: var(--main-red);
-}
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box
 
 /* =========================
-   Section Headers
-========================= */
-h1, h2, h3, h4 {
-    color: var(--main-red);
-}
-
-.text-brand {
-    color: var(--main-red);
-}
-
-/* =========================
-   Testimonials
-========================= */
-.testimonials {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.testimonial-card {
-    background-color: #fff5f0;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.testimonial-card p {
-    font-style: italic;
-    color: var(--text-muted);
-    margin-bottom: 10px;
-}
-
-.testimonial-card .author {
-    font-weight: 700;
-    color: var(--main-red);
-}
-
-/* =========================
-   Footer
-========================= */
-footer {
-    background-color: #ffe5d4;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-footer a {
-    color: var(--main-red);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* Footer Social Buttons */
-footer .btn-lg {
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-}
-
-footer .btn-lg:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease;
-}
-
-/* =========================
-   Inputs & Order Section
-========================= */
-#orderSection .form-control,
-#orderSection .form-select {
-    max-width: 120px;
-    margin: 0 auto;
-}
-
-#orderSection .order-summary h4 {
-    margin: 5px 0;
-}
-
-/* =========================
-   Utility
+   Card Hover Animations
 ========================= */
 .hover-scale {
-    transition: transform 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.hover-scale:hover {
-    transform: scale(1.05);
+.hover-scale.scale-up {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   Alert / Banner Enhancements
+========================= */
+.alert {
+  border-radius: 12px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.alert strong {
+  color: var(--main-red);
+}
+
+.alert b {
+  color: var(--dark-red);
 }
