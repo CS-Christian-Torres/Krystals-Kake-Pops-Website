@@ -42,7 +42,7 @@ form.addEventListener('submit', async function (e) {
   }
 
   try {
-    const response = await fetch('https://api.krystalskakepops.com/form-handler', {
+    const response = await fetch('https://api.krystalskakepops.com/signup', {
       method: 'POST',
       body: body,
     });
