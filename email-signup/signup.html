@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Krystal's Kake Pops Signup</title>
-  <link rel="stylesheet" href="signup.css">
+
+  <!-- Bootstrap CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Your stylesheet (absolute path so it works at /signup) -->
+  <link rel="stylesheet" href="/email-signup/signup.css" />
 </head>
 <body>
-  <section class="signup-section">
+  <section class="signup-section py-5">
     <div class="container">
-      <h1>Get a Free Cake Pop!</h1>
-      <p>Sign up with your email and choose your favorites. Receive a free cake pop with your first order!</p>
-      
-      <form id="signupForm">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
+      <h1 class="mb-3">Get a Free Cake Pop!</h1>
+      <p class="mb-4">Sign up with your email and choose your favorites. Receive a free cake pop with your first order!</p>
+
+      <form id="signupForm" class="row g-3">
+        <div class="col-12 col-md-6">
+          <label for="name" class="form-label">Name</label>
+          <input class="form-control" type="text" id="name" name="name" required />
         </div>
-        
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
+
+        <div class="col-12 col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input class="form-control" type="email" id="email" name="email" required />
         </div>
-        
-        <div class="form-group">
-          <label for="favoriteFlavor">Favorite Flavor:</label>
-          <select id="favoriteFlavor" name="favoriteFlavor" required>
+
+        <div class="col-12 col-md-6">
+          <label for="favoriteFlavor" class="form-label">Favorite Flavor</label>
+          <select class="form-select" id="favoriteFlavor" name="favoriteFlavor" required>
             <option value="">--Please choose--</option>
             <option value="chocolate">Chocolate</option>
             <option value="vanilla">Vanilla</option>
           </select>
         </div>
-        
-        <div class="form-group">
-          <label for="seasonalPreference">Seasonal Preference:</label>
-          <select id="seasonalPreference" name="seasonalPreference" required>
+
+        <div class="col-12 col-md-6">
+          <label for="seasonalPreference" class="form-label">Seasonal Preference</label>
+          <select class="form-select" id="seasonalPreference" name="seasonalPreference" required>
             <option value="">--Please choose--</option>
             <option value="strawberry">Spring - Strawberry</option>
             <option value="birthday">Summer - Birthday Cake</option>
@@ -43,18 +51,27 @@
             <option value="other">Other (please specify)</option>
           </select>
         </div>
-        
-        <div class="form-group" id="otherSeasonalContainer" style="display:none;">
-          <label for="otherSeasonal">Other Seasonal Preference:</label>
-          <input type="text" id="otherSeasonal" name="otherSeasonal">
+
+        <div class="col-12" id="otherSeasonalContainer" style="display:none;">
+          <label for="otherSeasonal" class="form-label">Other Seasonal Preference</label>
+          <input class="form-control" type="text" id="otherSeasonal" name="otherSeasonal" />
         </div>
 
-        <button type="submit" class="btn-submit">Sign Up</button>
-        <p class="success-message" id="successMessage"></p>
+        <div class="col-12 mt-2">
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+
+        <div class="col-12">
+          <p class="text-success mt-2" id="successMessage"></p>
+        </div>
       </form>
     </div>
   </section>
 
-  <script src="signup.js"></script>
+  <!-- Bootstrap JS Bundle (with Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Your script (absolute path so it works at /signup) -->
+  <script src="/email-signup/signup.js" defer></script>
 </body>
 </html>
