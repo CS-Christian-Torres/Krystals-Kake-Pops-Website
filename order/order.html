@@ -8,11 +8,14 @@
   <!-- Bootstrap -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+    rel="stylesheet"/>
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="order.css" />
+
+  <!-- HelcimPay.js Library -->
+<script src="https://api.helcim.com/helcim-pay.js"></script>
+
 </head>
 <body class="bg-light">
   <!-- Navbar -->
@@ -279,12 +282,14 @@
         <p class="text-muted small mb-3">
           💳 Online payments only. Cash orders must be placed by phone.
         </p>
-        <button
-          type="button"
-          class="btn btn-danger px-4 py-2 rounded-pill shadow-sm w-100 w-md-auto"
-        >
-          Proceed to Payment →
-        </button>
+    <button
+      type="button"
+      class="btn btn-danger px-4 py-2 rounded-pill shadow-sm w-100 w-md-auto"
+      onclick="processPayment()"
+    >
+      💳 Proceed to Payment →
+    </button>
+
       </div>
     </div>
   </div>
