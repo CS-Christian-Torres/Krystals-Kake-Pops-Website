@@ -18,11 +18,11 @@ form.addEventListener('submit', async function (e) {
   const formData = {
     name: form.name.value.trim(),
     email: form.email.value.trim(),
-    flavor: form.favoriteFlavor.value,
+    flavor: form.favoriteFlavor.value, // matches Flask field
     preference:
       form.seasonalPreference.value === 'other'
         ? form.otherSeasonal.value.trim()
-        : form.seasonalPreference.value,
+        : form.seasonalPreference.value, // matches Flask field
   };
 
   // Validate required fields
