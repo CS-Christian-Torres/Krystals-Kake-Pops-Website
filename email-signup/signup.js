@@ -1,4 +1,4 @@
-// Show/hide "Other Seasonal" input
+// === Show/hide "Other Seasonal" input ===
 const seasonalSelect = document.getElementById('seasonalPreference');
 const otherContainer = document.getElementById('otherSeasonalContainer');
 
@@ -8,7 +8,7 @@ seasonalSelect.addEventListener('change', () => {
   document.getElementById('otherSeasonal').required = isOther;
 });
 
-// Form submission
+// === Form submission ===
 const form = document.getElementById('signupForm');
 const successMessage = document.getElementById('successMessage');
 
@@ -18,46 +18,38 @@ form.addEventListener('submit', async function (e) {
   const formData = {
     name: form.name.value.trim(),
     email: form.email.value.trim(),
-    favoriteFlavor: form.favoriteFlavor.value,
-    seasonalPreference: form.seasonalPreference.value,
-    otherSeasonal: form.otherSeasonal.value.trim()
+    flavor: form.favoriteFlavor.value,
+    preference:
+      form.seasonalPreference.value === 'other'
+        ? form.otherSeasonal.value.trim()
+        : form.seasonalPreference.value,
   };
 
   // Validate required fields
-  if (
-    !formData.name ||
-    !formData.email ||
-    !formData.favoriteFlavor ||
-    !formData.seasonalPreference ||
-    (formData.seasonalPreference === 'other' && !formData.otherSeasonal)
-  ) {
+  if (!formData.name || !formData.email || !formData.flavor || !formData.preference) {
     alert('⚠️ Please fill out all required fields.');
     return;
   }
 
-  // Convert to FormData for backend
-  const body = new FormData();
-  for (const key in formData) {
-    body.append(key, formData[key]);
-  }
-
   try {
-    const response = await fetch('https://api.krystalskakepops.com/signup', {
+    const response = await fetch('https://api.krystalskakepops.com/submit-form', {
       method: 'POST',
-      body: body,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
     });
 
     if (response.ok) {
-      const result = await response.json();
       successMessage.textContent = '🎉 Thank you! Your signup has been recorded.';
       successMessage.style.color = '#28a745';
       form.reset();
       otherContainer.style.display = 'none';
     } else {
+      const errorText = await response.text();
+      console.error('Server error:', errorText);
       alert('❌ There was an error submitting your form. Please try again later.');
     }
   } catch (err) {
-    console.error('Error submitting form:', err);
+    console.error('Network or fetch error:', err);
     alert('🚧 Unable to reach the server. Please try again later.');
   }
 });
