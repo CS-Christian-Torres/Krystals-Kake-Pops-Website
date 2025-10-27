@@ -97,18 +97,18 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTotal();
 });
 
-// ===== 🧾 HELCIM PAYMENT INTEGRATION ===== //
+// ===== 💳 HELCIM PAYMENT INTEGRATION ===== //
 async function processPayment() {
   try {
-    // Get total
     const totalText = document.getElementById("orderTotal").textContent.trim();
     const amount = parseFloat(totalText.replace("$", "")) || 0;
+
     if (amount <= 0) {
       alert("Please select at least one item before paying.");
       return;
     }
 
-    // Build order description
+    // Build itemized order details
     const items = [];
     document.querySelectorAll("tr").forEach(row => {
       const nameCell = row.querySelector(".product-name");
@@ -116,39 +116,56 @@ async function processPayment() {
       if (!nameCell || !qtyInput) return;
       const name = nameCell.textContent.trim();
       const qty = parseInt(qtyInput.value) || 0;
-      if (qty > 0) items.push(`${qty} x ${name}`);
+      if (qty > 0) items.push({ name, qty });
     });
 
-    const description = `Krystal’s Kake Pops Order – ${items.join(", ")}`;
+    const description = `Krystal’s Kake Pops Order – ${items.map(i => `${i.qty} x ${i.name}`).join(", ")}`;
 
-    // Send to backend
+    const button = document.querySelector("button.btn-danger");
+    button.disabled = true;
+    button.textContent = "Processing...";
+
+    // 🧠 Request a checkout session from your Flask backend
     const response = await fetch("https://api.krystalskakepops.com/helcim-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: amount.toFixed(2), description })
+      body: JSON.stringify({
+        amount: amount.toFixed(2),
+        description,
+        items
+      })
     });
 
     const data = await response.json();
+    console.log("[Helcim Response]", data);
 
-    // Open HelcimPay
-    if (data.clientToken) {
-      HelcimPay.open({
-        clientToken: data.clientToken,
-        onComplete: function (result) {
-          console.log("✅ Payment completed:", result);
-          window.location.href = "/order/thank-you.html";
-        },
-        onError: function (err) {
-          console.error("❌ Payment error:", err);
-          alert("Payment failed: " + (err.message || "Unknown error."));
-        }
-      });
+    if (data.checkoutToken) {
+      // ✅ Launch secure HelcimPay modal
+      appendHelcimPayIframe(data.checkoutToken);
+      button.textContent = "Opening Payment...";
     } else {
       console.error("Backend error:", data);
       alert("Unable to initialize payment session. Please try again later.");
+      button.textContent = "💳 Proceed to Payment →";
     }
   } catch (error) {
     console.error("Network or server error:", error);
     alert("There was a problem connecting to the payment server.");
+  } finally {
+    const button = document.querySelector("button.btn-danger");
+    button.disabled = false;
+    button.textContent = "💳 Proceed to Payment →";
   }
 }
+
+// ===== 🎉 HANDLE HELCIM PAYMENT EVENTS ===== //
+window.addEventListener("message", (event) => {
+  if (!event.data?.eventStatus) return;
+
+  if (event.data.eventStatus === "SUCCESS") {
+    console.log("[Helcim] Payment successful!", event.data);
+    window.location.href = "/order/thankyou.html"; // Redirect on success
+  } else if (event.data.eventStatus === "ABORTED") {
+    alert("❌ Payment canceled.");
+  }
+});
