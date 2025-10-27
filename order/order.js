@@ -11,6 +11,13 @@ const bundleItems = [
   "✨ Vanilla Dream"
 ];
 
+const individualItems = [
+  "🍪 Klassic Kookie Krush",
+  "🥨 Chocolate Drizzle Krunch",
+  "🍬 Rice Krispy Cloud",
+  "🍪 Cookies & Cream Dream"
+];
+
 // ===== BASE PRICES ===== //
 const basePrices = {
   "🍫 Chocolate Bliss": 3.5,
@@ -19,10 +26,11 @@ const basePrices = {
   "🥨 Chocolate Drizzle Krunch": 2.5,
   "🍬 Rice Krispy Cloud": 2.5,
   "🍪 Cookies & Cream Dream": 2.5,
-  "🍓 Strawberry Burst": 27 / 12,
-  "🍋 Lemon Poppy Delight": 27 / 12,
-  "❤️ Red Velvet Romance": 27 / 12,
-  "🎃 Spooky Skull Pop": 27 / 12
+  // Dozen items = price per dozen
+  "🍓 Strawberry Burst": 27,
+  "🍋 Lemon Poppy Delight": 27,
+  "❤️ Red Velvet Romance": 27,
+  "🎃 Spooky Skull Pop": 27
 };
 
 // ===== DISCOUNT LOGIC (Chocolate & Vanilla) ===== //
@@ -38,69 +46,84 @@ function updateTotal() {
   let total = 0;
   let bundleQty = 0;
 
-  // Step 1: count total bundle items
+  // Count bundle items for discount calculation
   document.querySelectorAll("tr").forEach(row => {
-    const name = row.querySelector(".product-name")?.textContent.trim();
-    const qty = parseInt(row.querySelector(".qty-input")?.value) || 0;
+    const nameCell = row.querySelector(".product-name");
+    const qtyInput = row.querySelector(".qty-input");
+    if (!nameCell || !qtyInput) return;
+    const name = nameCell.textContent.trim();
+    const qty = parseInt(qtyInput.value) || 0;
     if (bundleItems.includes(name)) bundleQty += qty;
   });
 
-  // Step 2: calculate subtotal for each item
+  // Calculate totals
   document.querySelectorAll("tr").forEach(row => {
-    const name = row.querySelector(".product-name")?.textContent.trim();
+    const nameCell = row.querySelector(".product-name");
     const qtyInput = row.querySelector(".qty-input");
     const subtotalCell = row.querySelector(".subtotal");
-    if (!name || !qtyInput || !subtotalCell) return;
+    const priceCell = row.querySelector(".price");
+    if (!nameCell || !qtyInput || !subtotalCell || !priceCell) return;
 
-    let qty = parseInt(qtyInput.value) || 0;
+    const name = nameCell.textContent.trim();
+    const qty = parseInt(qtyInput.value) || 0;
+    let price = basePrices[name] || 0;
+    let subtotal = 0;
 
-    // Only round dozen items — others stay exact
-    if (dozenItems.includes(name) && qty > 0 && qty % 12 !== 0) {
-      const rounded = Math.floor(qty / 12) * 12;
-      qty = rounded;
-      qtyInput.value = rounded;
+    if (bundleItems.includes(name)) {
+      price = getBundlePricePerItem(bundleQty);
+      subtotal = qty * price;
+      priceCell.textContent = `$${price.toFixed(2)}`;
+    } else if (dozenItems.includes(name)) {
+      // 1 = one dozen ($27 flat)
+      subtotal = qty * price;
+      priceCell.textContent = `$27 / dozen`;
+    } else {
+      subtotal = qty * price;
+      priceCell.textContent = `$${price.toFixed(2)}`;
     }
 
-    let price = basePrices[name] || 0;
-    if (bundleItems.includes(name)) price = getBundlePricePerItem(bundleQty);
-
-    const subtotal = qty * price;
     subtotalCell.textContent = `$${subtotal.toFixed(2)}`;
     total += subtotal;
   });
 
-  document.getElementById("orderTotal").textContent = `$${total.toFixed(2)}`;
+  const totalDisplay = document.getElementById("orderTotal");
+  if (totalDisplay) totalDisplay.textContent = `$${total.toFixed(2)}`;
 }
 
 // ===== INIT ===== //
 document.addEventListener("DOMContentLoaded", () => {
-  const inputs = document.querySelectorAll(".qty-input");
-
-  inputs.forEach(input => {
-    input.addEventListener("input", updateTotal);
+  document.querySelectorAll(".qty-input").forEach(input => {
     input.addEventListener("change", updateTotal);
+    input.addEventListener("keyup", updateTotal);
   });
-
   updateTotal();
 });
 
-// ===== 🧾 HELCIM PAYMENT INTEGRATION ===== //
+// ===== 🧾 HELCIM PAYMENT INTEGRATION (Flask backend) ===== //
 async function processPayment() {
   try {
     const totalText = document.getElementById("orderTotal").textContent.trim();
     const amount = parseFloat(totalText.replace("$", "")) || 0;
-
     if (amount <= 0) {
       alert("Please select at least one item before paying.");
       return;
     }
 
-    // Build description
+    // Build order description
     const items = [];
     document.querySelectorAll("tr").forEach(row => {
-      const name = row.querySelector(".product-name")?.textContent.trim();
-      const qty = parseInt(row.querySelector(".qty-input")?.value) || 0;
-      if (qty > 0) items.push(`${qty} x ${name}`);
+      const nameCell = row.querySelector(".product-name");
+      const qtyInput = row.querySelector(".qty-input");
+      if (!nameCell || !qtyInput) return;
+      const name = nameCell.textContent.trim();
+      const qty = parseInt(qtyInput.value) || 0;
+      if (qty > 0) {
+        if (dozenItems.includes(name)) {
+          items.push(`${qty} dozen x ${name}`);
+        } else {
+          items.push(`${qty} x ${name}`);
+        }
+      }
     });
 
     const description = `Krystal’s Kake Pops Order – ${items.join(", ")}`;
@@ -108,10 +131,14 @@ async function processPayment() {
     const response = await fetch("https://api.krystalskakepops.com/helcim-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: amount.toFixed(2), description })
+      body: JSON.stringify({
+        amount: amount.toFixed(2),
+        description
+      })
     });
 
     const data = await response.json();
+    console.log("Helcim session response:", data);
 
     if (data.checkoutToken) {
       HelcimPay.open({
