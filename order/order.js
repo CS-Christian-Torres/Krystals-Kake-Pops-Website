@@ -18,7 +18,7 @@ const individualItems = [
   "🍪 Cookies & Cream Dream"
 ];
 
-// ===== BASE PRICES (CARD ONLY) ===== //
+// ===== BASE PRICES ===== //
 const basePrices = {
   "🍫 Chocolate Bliss": 3.5,
   "✨ Vanilla Dream": 3.5,
@@ -32,11 +32,11 @@ const basePrices = {
   "🎃 Spooky Skull Pop": 27 / 12
 };
 
-// ===== DISCOUNT LOGIC ===== //
+// ===== DISCOUNT LOGIC (Chocolate & Vanilla) ===== //
 function getBundlePricePerItem(totalQty) {
-  if (totalQty >= 12) return 27 / 12;
-  if (totalQty >= 6) return 16 / 6;
-  if (totalQty >= 3) return 8.75 / 3;
+  if (totalQty >= 12) return 27 / 12;  // $2.25 each
+  if (totalQty >= 6) return 16 / 6;    // $2.67 each
+  if (totalQty >= 3) return 8.75 / 3;  // $2.92 each
   return 3.5;
 }
 
@@ -56,6 +56,7 @@ function updateTotal() {
   let total = 0;
   let bundleQty = 0;
 
+  // Count bundle items first
   document.querySelectorAll("tr").forEach(row => {
     const nameCell = row.querySelector(".product-name");
     const qtyInput = row.querySelector(".qty-input");
@@ -65,6 +66,7 @@ function updateTotal() {
     if (bundleItems.includes(name)) bundleQty += qty;
   });
 
+  // Calculate totals
   document.querySelectorAll("tr").forEach(row => {
     const nameCell = row.querySelector(".product-name");
     const qtyInput = row.querySelector(".qty-input");
@@ -98,16 +100,15 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===== 🧾 HELCIM PAYMENT INTEGRATION ===== //
 async function processPayment() {
   try {
-    // 1️⃣ Get order total
+    // Get total
     const totalText = document.getElementById("orderTotal").textContent.trim();
     const amount = parseFloat(totalText.replace("$", "")) || 0;
-
     if (amount <= 0) {
       alert("Please select at least one item before paying.");
       return;
     }
 
-    // 2️⃣ Collect item summary for description
+    // Build order description
     const items = [];
     document.querySelectorAll("tr").forEach(row => {
       const nameCell = row.querySelector(".product-name");
@@ -120,7 +121,7 @@ async function processPayment() {
 
     const description = `Krystal’s Kake Pops Order – ${items.join(", ")}`;
 
-    // 3️⃣ Send order to Flask backend
+    // Send to backend
     const response = await fetch("https://api.krystalskakepops.com/helcim-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,13 +130,13 @@ async function processPayment() {
 
     const data = await response.json();
 
-    // 4️⃣ If backend returns a token, open payment window
+    // Open HelcimPay
     if (data.clientToken) {
       HelcimPay.open({
         clientToken: data.clientToken,
         onComplete: function (result) {
           console.log("✅ Payment completed:", result);
-          window.location.href = "/thank-you.html";
+          window.location.href = "/order/thank-you.html";
         },
         onError: function (err) {
           console.error("❌ Payment error:", err);
