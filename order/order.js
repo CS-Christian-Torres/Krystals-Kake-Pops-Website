@@ -21,10 +21,10 @@ function getActivePayment() {
 
 function getBundleUnitPrice(payment, totalQty) {
   const isCash = payment === "Cash";
-  if (totalQty >= 12) return isCash ? 25 / 12 : 27 / 12; // $2.08 vs $2.25
-  if (totalQty >= 6) return isCash ? 15 / 6 : 16 / 6;    // $2.50 vs $2.67
-  if (totalQty >= 3) return isCash ? 8 / 3 : 8.75 / 3;   // $2.67 vs $2.92
-  return isCash ? 3.0 : 3.5;                             // single item
+  if (totalQty >= 12) return isCash ? 25 / 12 : 27 / 12;
+  if (totalQty >= 6) return isCash ? 15 / 6 : 16 / 6;
+  if (totalQty >= 3) return isCash ? 8 / 3 : 8.75 / 3;
+  return isCash ? 3.0 : 3.5;
 }
 
 function getPerItemUnitPrice(payment) {
@@ -79,7 +79,7 @@ function updateTotal() {
     total += subtotal;
   });
 
-  // Highlight active method (Cash vs Card)
+  // Highlight active method
   const isCash = payment === "Cash";
   document.querySelectorAll(".deal-chips").forEach((chips) => {
     chips.querySelectorAll("span").forEach((badge) => {
@@ -153,18 +153,22 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleDeliveryUI();
   }
 
+  // Initialize total on page load
   updateTotal();
 
   // ===============================
   //  Submit → Flask backend
   // ===============================
   const form = document.getElementById("orderForm");
+  const msg = document.getElementById("orderMessage");
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const { items, totalQtyEach } = buildItemsSummary();
     if (items.length === 0) {
-      alert("Please select at least one item.");
+      msg.textContent = "⚠️ Please select at least one item.";
+      msg.style.color = "red";
       return;
     }
 
@@ -176,11 +180,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const payment = form.elements["payment"]?.value || "Cash";
 
     if (!first || !last || !phone) {
-      alert("First name, last name, and phone are required.");
+      msg.textContent = "⚠️ Please fill in all required contact fields.";
+      msg.style.color = "red";
       return;
     }
     if (delivery_option === "Delivery" && !address) {
-      alert("Please enter a delivery address.");
+      msg.textContent = "⚠️ Please enter your delivery address.";
+      msg.style.color = "red";
       return;
     }
 
@@ -189,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const payload = {
       name: `${first} ${last}`.trim(),
       phone,
-      flavor: items.join(", "),     // 'flavor' field for your backend CSV
+      flavor: items.join(", "),
       quantity: String(totalQtyEach),
       total: total.toFixed(2),
       payment,
@@ -202,6 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.disabled = true;
     btn.textContent = "Submitting…";
 
+    msg.textContent = "";
+
     try {
       const response = await fetch("https://api.krystalskakepops.com/api/order", {
         method: "POST",
@@ -212,16 +220,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await response.json().catch(() => ({}));
 
       if (response.ok) {
-        alert("Thanks! Your order was submitted. We’ll text you to coordinate pickup/delivery.");
+        msg.textContent = "🎉 Thanks! Your order was submitted successfully.";
+        msg.style.color = "green";
         form.reset();
         updateTotal();
         toggleDeliveryUI();
       } else {
-        alert(data?.message || "There was a problem submitting your order.");
+        msg.textContent = `⚠️ ${data?.message || "There was a problem submitting your order."}`;
+        msg.style.color = "red";
       }
     } catch (err) {
       console.error(err);
-      alert("Network/server error while submitting your order.");
+      msg.textContent = "🚧 Network/server error while submitting your order.";
+      msg.style.color = "red";
     } finally {
       btn.disabled = false;
       btn.textContent = oldText;
