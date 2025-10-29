@@ -79,7 +79,7 @@ function updateTotal() {
     total += subtotal;
   });
 
-  // Highlight active method
+  // Highlight active method (Cash vs Card)
   const isCash = payment === "Cash";
   document.querySelectorAll(".deal-chips").forEach((chips) => {
     chips.querySelectorAll("span").forEach((badge) => {
@@ -153,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleDeliveryUI();
   }
 
-  // Initialize total on page load
   updateTotal();
 
   // ===============================
@@ -207,11 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const oldText = btn.textContent;
     btn.disabled = true;
     btn.textContent = "Submitting…";
-
     msg.textContent = "";
 
     try {
-      const response = await const response = await fetch("https://api.krystalskakepops.com/order", {
+      const response = await fetch("https://api.krystalskakepops.com/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
