@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     msg.textContent = "";
 
     try {
-      const response = await fetch("https://api.krystalskakepops.com/api/order", {
+      const response = await const response = await fetch("https://api.krystalskakepops.com/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
