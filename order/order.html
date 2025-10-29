@@ -6,358 +6,232 @@
   <title>Order | Krystal’s Kake Pops</title>
 
   <!-- Bootstrap -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="order.css" />
-
-  <!-- HelcimPay.js Library -->
-<script src="https://api.helcim.com/helcim-pay.js"></script>
-
 </head>
 <body class="bg-light">
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container px-3">
       <a class="navbar-brand d-flex align-items-center" href="../index.html">
-        <img
-          src="../gallery/logo.png"
-          width="50"
-          height="50"
-          class="logo-circle me-2"
-          alt="Krystal's Kake Pops logo"
-        />
+        <img src="../gallery/logo.png" width="50" height="50" class="logo-circle me-2" alt="Krystal's Kake Pops logo" />
         <span class="fw-bold text-danger">Krystal's Kake Pops</span>
       </a>
-
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="../menu/menu.html">Menu</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html#contact">Contact</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main Container -->
+  <!-- Main Section -->
   <div class="container my-5">
-    <!-- ⚠️ Delivery / Pickup Notice -->
-    <div
-      class="alert alert-warning text-center shadow-sm mb-4 rounded-3"
-      role="alert"
-    >
-      <strong>Important:</strong> Krystal’s Kake Pops is a home-based bakery.<br />
-      We coordinate pickup or delivery directly after your order is placed.<br /><br />
-      🏠 <strong>Pickup:</strong> By appointment only (address shared after confirmation).<br />
-      🚗 <strong>Delivery:</strong> Free for <em>6 or more items</em> in
-      <b>O’Fallon</b>, <b>Shiloh</b>, and <b>Fairview Heights</b>.<br />
-      📞 Please contact us at
-      <a
-        href="tel:+1YOURNUMBER"
-        class="fw-bold text-danger text-decoration-none"
-        >YOUR PHONE NUMBER</a
-      >
-      after placing your order to arrange pickup or delivery.
-    </div>
 
-    <!-- Pricing Info Banner -->
-    <div
-      class="alert alert-light border rounded-3 mb-4 text-center shadow-sm"
-      role="alert"
-      style="background-color: #fff5f5"
-    >
-      <strong>💲 Bundle Pricing — Chocolate & Vanilla only:</strong><br />
-      Applies to <em>🍫 Chocolate Bliss</em> and <em>✨ Vanilla Dream</em> (mix &
-      match).<br />
-      1 for <strong>$3.50</strong> • 3 for <strong>$8.75</strong> • ½ dozen (6)
-      for <strong>$16</strong> • 1 dozen (12) for <strong>$27</strong><br />
-      <span class="text-muted small"
-        >🍪 Klassic Kookie Krush, 🥨 Chocolate Drizzle Krunch, 🍬 Rice Krispy
-        Cloud, and 🍪 Cookies & Cream Dream are single-item pricing only.</span
-      >
+    <!-- Info -->
+    <div class="alert alert-warning text-center shadow-sm mb-4 rounded-3" role="alert">
+      <strong>Important:</strong> Krystal’s Kake Pops is a home-based bakery.<br>
+      We coordinate pickup or delivery directly after your order is placed.
     </div>
 
     <!-- Order Card -->
     <div class="card border-0 shadow-sm p-3 p-md-4 mb-4">
       <h3 class="text-center text-danger fw-bold mb-4">Place Your Order</h3>
 
-      <!-- Responsive Table -->
-      <div class="table-responsive">
-        <table class="table align-middle text-center mb-0">
-          <thead class="table-light">
-            <tr>
-              <th>Item</th>
-              <th style="width: 90px">Qty</th>
-              <th>Price</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Chocolate Bliss -->
-            <tr class="individual">
-              <td class="product-name">🍫 Chocolate Bliss</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$3.50</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+      <form id="orderForm" novalidate>
+        <!-- Customer Info -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-4">
+            <label for="first_name" class="form-label">First Name</label>
+            <input id="first_name" name="first_name" class="form-control" placeholder="First name" required>
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input id="last_name" name="last_name" class="form-control" placeholder="Last name" required>
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="phone" class="form-label">Phone</label>
+            <input id="phone" name="phone" class="form-control" placeholder="(xxx) xxx-xxxx" required>
+          </div>
 
-            <!-- Vanilla Dream -->
-            <tr class="individual">
-              <td class="product-name">✨ Vanilla Dream</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$3.50</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+          <div class="col-12 col-md-4">
+            <label for="deliveryOption" class="form-label">Delivery Option</label>
+            <select id="deliveryOption" name="delivery_option" class="form-select" required>
+              <option value="Pickup">Pickup</option>
+              <option value="Delivery">Delivery</option>
+            </select>
+            <div id="deliveryNote" class="form-text d-none">
+              Delivery <strong>free only</strong>: O’Fallon, Fairview Heights, Shiloh, Swansea.
+            </div>
+          </div>
 
-            <!-- Single-item -->
-            <tr class="individual">
-              <td class="product-name">🍪 Klassic Kookie Krush</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$2.50</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+          <div class="col-12 col-md-8 d-none" id="addressWrap">
+            <label for="addressField" class="form-label">Delivery Address</label>
+            <input id="addressField" name="address" class="form-control" placeholder="Street, City, ZIP">
+          </div>
 
-            <tr class="individual">
-              <td class="product-name">🥨 Chocolate Drizzle Krunch</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$2.50</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+          <div class="col-12 col-md-4">
+            <label for="payment" class="form-label">Payment Type</label>
+            <select id="payment" name="payment" class="form-select" required>
+              <option value="Cash">Cash (pay in person)</option>
+              <option value="Card" selected>Card (pay in person)</option>
+            </select>
+          </div>
+        </div>
 
-            <tr class="individual">
-              <td class="product-name">🍬 Rice Krispy Cloud</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$2.50</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+        <!-- Order Table -->
+        <div class="table-responsive">
+          <table class="table align-middle text-center mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Item</th>
+                <th style="width:90px">Qty</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Chocolate -->
+              <tr data-item="🍫 Chocolate Bliss">
+                <td class="product-name">
+                  🍫 Chocolate Bliss
+                  <div class="meta small text-muted">Card $3.50 • Cash $3</div>
+                  <div class="deal-chips mt-1">
+                    <span class="badge rounded-pill text-bg-light">3× $8 cash / $8.75 card</span>
+                    <span class="badge rounded-pill text-bg-light">6× $15 cash / $16 card</span>
+                    <span class="badge rounded-pill text-bg-light">12× $25 cash / $27 card</span>
+                  </div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$3.50</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-            <tr class="individual">
-              <td class="product-name">🍪 Cookies & Cream Dream</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$2.50</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+              <!-- Vanilla -->
+              <tr data-item="✨ Vanilla Dream">
+                <td class="product-name">
+                  ✨ Vanilla Dream
+                  <div class="meta small text-muted">Card $3.50 • Cash $3</div>
+                  <div class="deal-chips mt-1">
+                    <span class="badge rounded-pill text-bg-light">3× $8 cash / $8.75 card</span>
+                    <span class="badge rounded-pill text-bg-light">6× $15 cash / $16 card</span>
+                    <span class="badge rounded-pill text-bg-light">12× $25 cash / $27 card</span>
+                  </div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$3.50</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-            <!-- Dozen-only items -->
-            <tr class="dozen">
-              <td class="product-name">🍓 Strawberry Burst</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$27 / dozen</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+              <!-- Per-item -->
+              <tr data-item="🍬 Rice Krispy Cloud">
+                <td class="product-name">
+                  🍬 Rice Krispy Cloud
+                  <div class="meta small text-muted">Card $2.50 • Cash $2</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$2.50</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-            <tr class="dozen">
-              <td class="product-name">🍋 Lemon Poppy Delight</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$27 / dozen</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+              <tr data-item="🍪 Klassic Kookie Krush">
+                <td class="product-name">
+                  🍪 Klassic Kookie Krush
+                  <div class="meta small text-muted">Card $2.50 • Cash $2</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$2.50</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-            <tr class="dozen">
-              <td class="product-name">❤️ Red Velvet Romance</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$27 / dozen</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
+              <!-- Dozen-only -->
+              <tr data-item="🍓 Strawberry Burst">
+                <td class="product-name">🍓 Strawberry Burst
+                  <div class="meta small text-muted">Dozen Card $27 • Dozen Cash $25</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$27 / dozen</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-            <tr class="dozen">
-              <td class="product-name">🎃 Spooky Skull Pop</td>
-              <td>
-                <input
-                  type="number"
-                  class="qty-input form-control form-control-sm text-center mx-auto"
-                  min="0"
-                  step="1"
-                  value="0"
-                  style="max-width: 70px"
-                />
-              </td>
-              <td class="price">$27 / dozen</td>
-              <td class="subtotal">$0.00</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+              <tr data-item="🍋 Lemon Poppy Delight">
+                <td class="product-name">🍋 Lemon Poppy Delight
+                  <div class="meta small text-muted">Dozen Card $27 • Dozen Cash $25</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$27 / dozen</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-      <!-- Total + Button -->
-      <div class="text-center mt-4">
-        <h4 class="fw-bold text-danger">
-          Total: <span id="orderTotal">$0.00</span>
-        </h4>
-        <p class="text-muted small mb-3">
-          💳 Online payments only. Cash orders must be placed by phone.
-        </p>
-    <button
-      type="button"
-      class="btn btn-danger px-4 py-2 rounded-pill shadow-sm w-100 w-md-auto"
-      onclick="processPayment()"
-    >
-      💳 Proceed to Payment →
-    </button>
+              <tr data-item="❤️ Red Velvet Romance">
+                <td class="product-name">❤️ Red Velvet Romance
+                  <div class="meta small text-muted">Dozen Card $27 • Dozen Cash $25</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$27 / dozen</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
 
-      </div>
+              <tr data-item="🥨 Chocolate Drizzle Krunch">
+                <td class="product-name">🥨 Chocolate Drizzle Krunch
+                  <div class="meta small text-muted">Dozen Card $27 • Dozen Cash $25</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$27 / dozen</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
+
+              <tr data-item="🎃 Spooky Skull Pop">
+                <td class="product-name">🎃 Spooky Skull Pop
+                  <div class="meta small text-muted">Dozen Card $27 • Dozen Cash $25</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$27 / dozen</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
+
+              <tr data-item="🍪 Cookies & Cream Dream">
+                <td class="product-name">🍪 Cookies & Cream Dream
+                  <div class="meta small text-muted">Dozen Card $27 • Dozen Cash $25</div>
+                </td>
+                <td><input type="number" class="qty-input form-control form-control-sm text-center mx-auto" min="0" value="0"></td>
+                <td class="price">$27 / dozen</td>
+                <td class="subtotal">$0.00</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Total + Submit -->
+        <div class="text-center mt-4">
+          <h4 class="fw-bold text-danger">
+            Total: <span id="orderTotal">$0.00</span>
+          </h4>
+          <div class="alert alert-info py-2 mt-3" role="alert">
+            After you place your order, we’ll text you to coordinate pickup/delivery.
+          </div>
+          <button type="submit" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm w-100 w-md-auto">
+            🧁 Place Order
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/order/order.js"></script>
 
-
-  <!-- HelcimPay Integration -->
-<script>
-async function processPayment() {
-  const totalElement = document.getElementById("orderTotal");
-  const amount = parseFloat(totalElement.textContent.replace("$", "")) || 0;
-
-  if (amount <= 0) {
-    alert("Please select at least one item before proceeding to payment.");
-    return;
-  }
-
-  // 📝 Description (optional: you can make this more detailed)
-  const description = `Krystal’s Kake Pops Order - Total $${amount.toFixed(2)}`;
-
-  // 🧾 Notify user
-  const button = document.querySelector("button.btn-danger");
-  button.disabled = true;
-  button.textContent = "Processing...";
-
-  try {
-    // 🔐 Request checkout session from your Flask API
-    const response = await fetch("https://api.krystalskakepops.com/helcim-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: amount.toFixed(2), description }),
-    });
-
-    const data = await response.json();
-    console.log("[Helcim Response]", data);
-
-    if (data.checkoutToken) {
-      // 🎉 Open Helcim payment modal
-      appendHelcimPayIframe(data.checkoutToken);
-      button.textContent = "Opening Payment...";
-    } else {
-      alert("Payment session could not be created: " + (data.error || "Unknown error"));
-      button.textContent = "💳 Proceed to Payment →";
-    }
-  } catch (err) {
-    console.error(err);
-    alert("There was a problem connecting to the payment server.");
-    button.textContent = "💳 Proceed to Payment →";
-  } finally {
-    button.disabled = false;
-  }
-}
-
-// ✅ Listen for HelcimPay responses
-window.addEventListener("message", (event) => {
-  if (!event.data?.eventName) return;
-
-  const status = event.data?.eventStatus;
-  if (status === "SUCCESS") {
-    alert("✅ Payment successful! Thank you for your order!");
-  } else if (status === "ABORTED") {
-    alert("❌ Payment canceled.");
-  }
-});
-</script>
+  <!-- Custom JS -->
+  <script src="order.js"></script>
 
 </body>
 </html>

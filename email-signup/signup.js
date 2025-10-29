@@ -15,41 +15,49 @@ const successMessage = document.getElementById('successMessage');
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
 
-  const formData = {
-    name: form.name.value.trim(),
-    email: form.email.value.trim(),
-    flavor: form.favoriteFlavor.value, // matches Flask field
-    preference:
-      form.seasonalPreference.value === 'other'
-        ? form.otherSeasonal.value.trim()
-        : form.seasonalPreference.value, // matches Flask field
-  };
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const favoriteFlavor = form.favoriteFlavor.value.trim();
+  const seasonalPreference = form.seasonalPreference.value.trim();
+  const otherSeasonal = form.otherSeasonal.value.trim();
 
   // Validate required fields
-  if (!formData.name || !formData.email || !formData.flavor || !formData.preference) {
+  if (!name || !email || !favoriteFlavor || !seasonalPreference ||
+      (seasonalPreference === 'other' && !otherSeasonal)) {
     alert('⚠️ Please fill out all required fields.');
     return;
   }
 
+  // Build URL-encoded body (Flask uses request.form)
+  const params = new URLSearchParams({
+    name,
+    email,
+    favoriteFlavor,
+    seasonalPreference,
+    otherSeasonal
+  });
+
   try {
-    const response = await fetch('https://api.krystalskakepops.com/submit-form', {
+    const response = await fetch('https://api.krystalskakepops.com/form-handler', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params
     });
 
     if (response.ok) {
+      const result = await response.json();
+      console.log('✅ Server response:', result);
       successMessage.textContent = '🎉 Thank you! Your signup has been recorded.';
       successMessage.style.color = '#28a745';
       form.reset();
       otherContainer.style.display = 'none';
     } else {
       const errorText = await response.text();
-      console.error('Server error:', errorText);
+      console.error('❌ Server error:', errorText);
       alert('❌ There was an error submitting your form. Please try again later.');
     }
   } catch (err) {
-    console.error('Network or fetch error:', err);
+    console.error('⚠️ Network or fetch error:', err);
     alert('🚧 Unable to reach the server. Please try again later.');
   }
 });
